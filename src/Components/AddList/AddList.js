@@ -3,7 +3,7 @@ import AddItem from '../AddItem/AddItem';
 
 function AddList() {
   //UseSatete Hook de react, 
-  const [text, setText]=useState(''); //estado para almacenar la entrada del usuaruio
+  const [text, setText]=useState(''); //estado para almacenar la entrada del usuario
   const [list, setList]=useState([]); //estado para almacenar la lista de listas
 
   // controlador de eventos para cuando cambia el valor del input
@@ -16,12 +16,12 @@ function AddList() {
     if (event.key === "Enter") {
       event.preventDefault(); //previene el comportamiento por defecto del formulario
       const newList = { // crea un nuevo objeto para agregar a la lista de listas
-        id:Date.now(),
+        id:Date.now(), //Asigna como valor para la propiedad "id" la fecha y hora actual
         title:text,
         items:[]
       };
       setList([...list, newList]); // agrega el nuevo objeto a la lista de listas
-      setText(''); // limpiamos el valor del input
+      setText(''); // limpia el valor del input
     }
   }
 
