@@ -25,6 +25,12 @@ function AddList() {
     }
   }
 
+  //controlador de eventos para eliminar una lista y sus elementos. 
+  const handleDeleteList = (id) => {
+    const newList = list.filter(list => list.id !==id); //crea una nueva lista sin la lista con el id especificado
+    setList(newList); // actualiza el estado de la lista de listas. 
+  };
+
     return (
        <div>
          <input type="text"
@@ -36,6 +42,7 @@ function AddList() {
         {list.map(list =>(
           <div key={list.id}>
             <h3>{list.title}</h3> 
+            <button onClick={() => handleDeleteList(list.id)}>X</button> {/* Botón o icono X para eliminar la lista */}
             <AddItem/>
           </div>
         ))}
