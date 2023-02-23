@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import useLocalStorage from '../useLocalStorage/useLocalStorage';
 
-function AddItem({ onAddItem }) {
+function AddItem({listId }) {
   //UseState Hook de react, 
   const [item, setItem] = useState('');//estado para almacenar la entrada del usuario
-  const [itemList, setItemList] = useState([]);//estado para almacenar la lista de items.
+  const [itemList, setItemList] = useLocalStorage(`items-${listId}`,[]);//estado para almacenar la lista de items.
 
   // controlador de eventos para cuando cambia el valor del input
   const handleChange = (event) => {
@@ -19,7 +20,7 @@ function AddItem({ onAddItem }) {
         name: item, ////Asigna como valor para la propiedad "name" el valor actual del estado local "item"
         isChecked: false, // agrega una propiedad "isChecked" inicialmente en flase. 
       };
-      setItemList([...itemList, newItem]);// agrega el nuevo objeto a la lista de items.
+      setItemList([...itemList, newItem],`items-${listId}`);// agrega el nuevo objeto a la lista de items.
       setItem(''); // limpia el valor del input del Item
     }
   }

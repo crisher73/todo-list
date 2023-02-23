@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
 import AddItem from '../AddItem/AddItem';
+import useLocalStorage from '../useLocalStorage/useLocalStorage';
 
 function AddList() {
   //UseSatete Hook de react, 
   const [text, setText]=useState(''); //estado para almacenar la entrada del usuario
-  const [list, setList]=useState([]); //estado para almacenar la lista de listas
+  const [list, setList]=useLocalStorage('list',[]); //estado para almacenar la lista de listas
 
   // controlador de eventos para cuando cambia el valor del input
   const handleChange = (event) => {
@@ -43,7 +44,7 @@ function AddList() {
           <div key={list.id}>
             <h3>{list.title}</h3> 
             <button onClick={() => handleDeleteList(list.id)}>X</button> {/* Botón o icono X para eliminar la lista */}
-            <AddItem/>
+            <AddItem listId={list.id}/>
           </div>
         ))}
        </div>
