@@ -1,0 +1,52 @@
+input[type="text"] {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #D6E6F2;
+    font-family: 'Arsenal', sans-serif;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px #303841;
+}
+
+.InputList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  
+}
+@media screen and (max-width: 768px) {
+    h3 {
+        font-size: 18px;
+    }
+}
+.AddList {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.TitleList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}  
+
+.Lists {
+    display:flex;
+    flex-wrap:wrap;
+    font-family: 'Arsenal', sans-serif;
+}  
+
+
+  
+  
+  
+  

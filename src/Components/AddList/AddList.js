@@ -1,11 +1,14 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import AddItem from '../AddItem/AddItem';
 import useLocalStorage from '../useLocalStorage/useLocalStorage';
+import './AddList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function AddList() {
   //UseSatete Hook de react, 
-  const [text, setText]=useState(''); //estado para almacenar la entrada del usuario
-  const [list, setList]=useLocalStorage('list',[]); //estado para almacenar la lista de listas
+  const [text, setText] = useState(''); //estado para almacenar la entrada del usuario
+  const [list, setList] = useLocalStorage('list', []); //estado para almacenar la lista de listas
 
   // controlador de eventos para cuando cambia el valor del input
   const handleChange = (event) => {
@@ -17,9 +20,9 @@ function AddList() {
     if (event.key === "Enter") {
       event.preventDefault(); //previene el comportamiento por defecto del formulario
       const newList = { // crea un nuevo objeto para agregar a la lista de listas
-        id:Date.now(), //Asigna como valor para la propiedad "id" la fecha y hora actual
-        title:text,
-        items:[]
+        id: Date.now(), //Asigna como valor para la propiedad "id" la fecha y hora actual
+        title: text,
+        items: []
       };
       setList([...list, newList]); // agrega el nuevo objeto a la lista de listas
       setText(''); // limpia el valor del input
@@ -28,28 +31,33 @@ function AddList() {
 
   //controlador de eventos para eliminar una lista y sus elementos. 
   const handleDeleteList = (id) => {
-    const newList = list.filter(list => list.id !==id); //crea una nueva lista sin la lista con el id especificado
+    const newList = list.filter(list => list.id !== id); //crea una nueva lista sin la lista con el id especificado
     setList(newList); // actualiza el estado de la lista de listas. 
   };
 
-    return (
-       <div>
-         <input type="text"
-          placeholder="agrega una Lista"
-          value= {text}
-          onChange = {handleChange}
-          onKeyDown = {handleKeyDown}
-        />
-        {list.map(list =>(
-          <div key={list.id}>
-            <h3>{list.title}</h3> 
-            <button onClick={() => handleDeleteList(list.id)}>X</button> {/* Botón o icono X para eliminar la lista */}
-            <AddItem listId={list.id}/>
+  return (
+    <div >
+      <div className='InputList'>
+      <input type="text"
+        placeholder="Agrega una lista"
+        value={text}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+      </div>
+      <div className='Lists'>
+        {list.map(list => (
+          <div key={list.id} className='AddList' >
+            <div className='TitleList'>
+              <h3>{list.title}</h3>
+              <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteList(list.id)} />
+            </div>
+            <AddItem listId={list.id} />
           </div>
         ))}
-       </div>
-    );
+      </div>
+    </div>
+  );
 }
-
 
 export default AddList;

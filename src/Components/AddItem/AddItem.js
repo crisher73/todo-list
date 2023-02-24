@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import useLocalStorage from '../useLocalStorage/useLocalStorage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import './AddItem.css';
 
 function AddItem({listId }) {
   //UseState Hook de react, 
@@ -67,7 +70,7 @@ function AddItem({listId }) {
             onChange={() => handleCheckboxChange(item.id)} //asigna el controlado de evento "handleCheckboxChange" al evento "oncahnge" del checkbox.
             />
             {item.name} 
-            <button onClick={() => handleDeleteItem(item.id)}>X</button> {/* Botón o icono X para eliminar la lista */}
+            <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteItem(item.id)} />
           </li> 
         ))}
       </ul>

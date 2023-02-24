@@ -8,7 +8,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className='App'>
       <h1>ToDo-List</h1>
       <AddList myList={myList} setMyList={setMyList} />
     </div>
