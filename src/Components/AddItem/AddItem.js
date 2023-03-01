@@ -28,7 +28,7 @@ function AddItem({listId }) {
     }
   }
 
-  //controlador de eventos para cuandop se hace click en el checkbox
+  //controlador de eventos para cuando se hace click en el checkbox
   const handleCheckboxChange = (id) => {
     setItemList((prevList) =>
       prevList.map((item) => {

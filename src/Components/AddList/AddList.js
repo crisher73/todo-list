@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function AddList() {
-  //UseSatete Hook de react, 
+  //UseState Hook de react, 
   const [text, setText] = useState(''); //estado para almacenar la entrada del usuario
   const [list, setList] = useLocalStorage('list', []); //estado para almacenar la lista de listas
 
@@ -20,9 +20,8 @@ function AddList() {
     if (event.key === "Enter") {
       event.preventDefault(); //previene el comportamiento por defecto del formulario
       const newList = { // crea un nuevo objeto para agregar a la lista de listas
-        id: Date.now(), //Asigna como valor para la propiedad "id" la fecha y hora actual
-        title: text,
-        items: []
+        id: Date.now(), //Asigna como valor para la propiedad "id" la fecha y hora actual (timestamp)
+        title: text
       };
       setList([...list, newList]); // agrega el nuevo objeto a la lista de listas
       setText(''); // limpia el valor del input
@@ -38,12 +37,12 @@ function AddList() {
   return (
     <div >
       <div className='InputList'>
-      <input type="text"
-        placeholder="Agrega una lista"
-        value={text}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
+        <input type="text"
+          placeholder="Agrega una lista"
+          value={text}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
       </div>
       <div className='Lists'>
         {list.map(list => (
