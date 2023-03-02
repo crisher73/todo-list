@@ -58,19 +58,37 @@ function AddItem({listId }) {
         onChange={handleChange} //Asigna el controlador de evento "handleChange" al evento "onChange" del input
         onKeyDown={handleKeyDown} //Asigna el controlador de evento "handleKeyDown" al evento "onKeyDown" del input
       />
+      <br/>
+      <p>Pendientes</p>
       <ul>
-        {itemList.map(item => ( //Itera sobre los elementos del arreglo "itemList" y los muestra en una lista
+        {itemList.map(undone => ( //Itera sobre los elementos del arreglo "itemList" y los muestra en una lista
           <li //Muestra el valor de la propiedad "name" del objeto actual en un elemento "li"
-            key={item.id}
-            style={{ textDecoration: item.isChecked ? 'line-through' : 'none' }} //añade el estilo a la lista 
+            key={undone.id}
+            style={{display: undone.isChecked ? 'none' : 'inline'}} //añade el estilo a la lista 
           >
             <input
             type='checkbox'
-            checked={item.isChecked} // asigna el valor actual de 'isCkeched' como el estado actual del checkbox. 
-            onChange={() => handleCheckboxChange(item.id)} //asigna el controlado de evento "handleCheckboxChange" al evento "oncahnge" del checkbox.
+            checked={undone.isChecked} // asigna el valor actual de 'isCkeched' como el estado actual del checkbox. 
+            onChange={() => handleCheckboxChange(undone.id)} //asigna el controlado de evento "handleCheckboxChange" al evento "oncahnge" del checkbox.
             />
-            {item.name} 
-            <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteItem(item.id)} />
+            {undone.name} 
+            <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteItem(undone.id)} />
+          </li> 
+        ))}
+        <p>Realizadas</p>
+        {itemList.map(done => ( //Itera sobre los elementos del arreglo "itemList" y los muestra en una lista
+          <li //Muestra el valor de la propiedad "name" del objeto actual en un elemento "li"
+            key={done.id}
+            style={{ textDecoration: done.isChecked ? 'line-through' : 'none',
+            display: done.isChecked ? 'inline' : 'none'}} //añade el estilo a la lista 
+          >
+            <input
+            type='checkbox'
+            checked={done.isChecked} // asigna el valor actual de 'isCkeched' como el estado actual del checkbox. 
+            onChange={() => handleCheckboxChange(done.id)} //asigna el controlado de evento "handleCheckboxChange" al evento "oncahnge" del checkbox.
+            />
+            {done.name} 
+            <FontAwesomeIcon icon={faTimes} onClick={() => handleDeleteItem(done.id)} />
           </li> 
         ))}
       </ul>
@@ -79,3 +97,8 @@ function AddItem({listId }) {
 }
 
 export default AddItem;
+
+//item.checked ==false
+//mostrar
+//item.chcked ==true
+//no mostrar
