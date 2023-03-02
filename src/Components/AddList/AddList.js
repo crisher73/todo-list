@@ -10,6 +10,21 @@ function AddList() {
   const [text, setText] = useState(''); //estado para almacenar la entrada del usuario
   const [list, setList] = useLocalStorage('list', []); //estado para almacenar la lista de listas
 
+  const key0 = 'items-1'
+  if (!localStorage.getItem(key0)) {
+    const firstList = {
+      id: 1,
+      title: "MY FIRST LIST"
+    };
+    setList([firstList]);
+    localStorage.setItem(key0, JSON.stringify([
+      {id:1,name:"Task 1 ",isChecked:true},
+      {id:2,name:"Task 2",isChecked:false},
+      {id:3,name:"Task 3",isChecked:true},
+      {id:4,name:"Task 4",isChecked:false}
+    ]));
+  }
+
   // controlador de eventos para cuando cambia el valor del input
   const handleChange = (event) => {
     setText(event.target.value);

@@ -98,7 +98,3 @@ function AddItem({listId }) {
 
 export default AddItem;
 
-//item.checked ==false
-//mostrar
-//item.chcked ==true
-//no mostrar
